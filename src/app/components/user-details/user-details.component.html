@@ -1,0 +1,86 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentUser.id">
+    <h4>Utilisateur</h4>
+    <div>
+      <label><strong>ID:</strong></label> {{ currentUser.id }}
+    </div>
+    <div>
+      <label><strong>Prénom:</strong></label>
+      {{ currentUser.firstName }}
+    </div>
+    <div>
+      <label><strong>Nom:</strong></label>
+      {{ currentUser.lastName }}
+    </div>
+    <div>
+      <label><strong>E-mail:</strong></label>
+      {{ currentUser.email }}
+    </div>
+
+    <a class="badge badge-warning"
+      routerLink="/users/{{ currentUser.id }}">
+      Modifier
+    </a>
+  </div>
+
+  <div *ngIf="!currentUser">
+    <br />
+    <p>Click sur l'utilisateur...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentUser.id" class="edit-form">
+    <h4>Utilisateur</h4>
+    <form>
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          [(ngModel)]="currentUser.firstName"
+          name="firstName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          [(ngModel)]="currentUser.lastName"
+          name="lastName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+            type="text"
+            class="form-control"
+            id="email"
+            [(ngModel)]="currentUser.email"
+            name="email"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteUser()">
+      Supprimer
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateUser()"
+    >
+      Modifier
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentUser.id">
+    <br />
+    <p>Utilisateur introuvable...</p>
+  </div>
+</ng-template>

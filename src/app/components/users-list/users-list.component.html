@@ -1,0 +1,55 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by firstname"
+        [(ngModel)]="firstName"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by lastname"
+        [(ngModel)]="lastName"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchByFirstNameOrLastName()"
+        >
+          Chercher
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card my-5">
+    <h4>Utilisateurs trouvés</h4>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index"
+          [class.active]="i == currentIndex"
+          >
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            <td><span><a href="#"><img src="/assets/images/celad_img_edit.png"/></a></span> &nbsp;
+                <span (click)="deleteSelectedUser(user, i)"><a href="#"><img src="/assets/images/celad_img_delete.png"/></a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

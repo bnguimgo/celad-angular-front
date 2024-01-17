@@ -1,0 +1,24 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav mr-auto">
+      <div>
+        <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+      </div>  
+      <div>
+        <li class="nav-item">
+          <a routerLink="users" class="nav-link">Liste utilisateurs</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="add" class="nav-link">Créer</a>
+        </li>
+      <!--  <li class="nav-item">
+          <a routerLink="users/1" class="nav-link">Détails utilisateurs</a>
+        </li> -->
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
